@@ -89,7 +89,7 @@ ConnectionTest.prototype = {
 				window.webrtcConnectionRefuse = true
 				store.commit('setWebrtcConnectionRefuse', true)
 				console.log('vuex store', store.commit('setWebrtcConnectionRefuse', true))
-				console.log('webrtc连不通', window.webrtcConnectionRefuse)
+				console.log('webrtc连不�?, window.webrtcConnectionRefuse)
 			}
 		}
 	}
@@ -171,7 +171,7 @@ WebRTCTest.prototype = {
 			startBrowserTest();
 			startConnectionTest()
 			checkTBSVersion(navigator.userAgent);
-			console.log('初始化---测试webrtc连接能力')
+			console.log('初始�?--测试webrtc连接能力')
 		} else {
 			window.webrtcConnectionRefuse = true
 			store.commit('setWebrtcConnectionRefuse', true)
@@ -182,9 +182,9 @@ WebRTCTest.prototype = {
  var connectionMessage = "";
  var browserCanUseWebrtc = ""
  var text = {
-		Connection : "连通性",
-		ConnectionTest : "连通性测试",
-		Browser : "浏览器"
+		Connection : "连通�?,
+		ConnectionTest : "连通性测�?,
+		Browser : "浏览�?
  };
  
  function onConnectionTestMessage(str) {
@@ -216,7 +216,7 @@ WebRTCTest.prototype = {
          }),
          success: function (json) {
              if(json && json.errorCode === 0 ){
-                 //一会儿进入房间要用到
+                 //一会儿进入房间要用�?
                  var url = "wss://webrtc.qq.com:8687/?userSig="+json.data.userSig+"&sdkAppid=1400027849&identifier=neallin";
                  callback(url );
              }else{
@@ -326,11 +326,11 @@ WebRTCTest.prototype = {
           new RTCPeerConnection(serverConfig);
           return true;
         } else {
-         //  throw "当前浏览器不支持该功能";
+         //  throw "当前浏览器不支持该功�?;
           return false
         }
       } catch (error) {
-        console.error("当前浏览器不支持该功能")
+        console.error("当前浏览器不支持该功�?)
         return false;
       }
   }
@@ -358,21 +358,21 @@ WebRTCTest.prototype = {
              titleText = a + ":";
              var version = checkTBSVersion(navigator.userAgent);
              if( a === 'Android' && version && version < 43600 ){
-                 titleText =  "TBS (version:"+ version + ") 不支持 !!!";
+                 titleText =  "TBS (version:"+ version + ") 不支�?!!!";
              }
              else if(!isWebRTCSupported || (!isMobile.safari() && isMobile.iOS())) {
                  titleText = a + "当前浏览器不支持 !!!";
              }else{
                  if( isMobile.safari() && isMobile.iOS()  ){
-                     //ios 11 版本 11.0.3 以下不支持
+                     //ios 11 版本 11.0.3 以下不支�?
                      var matches = (navigator.userAgent).match(/OS (\d+)_(\d+)_?(\d+)?/);
                      if(matches && matches[1]>=11 && (matches[2]>=1 || matches[3] >= 3) ){
-                         titleText =  matches[0] + " 当前浏览器支持 !!!";
+                         titleText =  matches[0] + " 当前浏览器支�?!!!";
                      }else{
-                         titleText =  matches[0] + "  不支持 !!!";
+                         titleText =  matches[0] + "  不支�?!!!";
                      }
                  }else{
-                     titleText =  a + " 当前浏览器支持 !!!";
+                     titleText =  a + " 当前浏览器支�?!!!";
                  }
              }
              browserCanUseWebrtc = titleText;
@@ -382,19 +382,19 @@ WebRTCTest.prototype = {
      }
  
      checkH264Support(function(encode, decode){
-         titleText = "当前浏览器 不支持 !!!"
+         titleText = "当前浏览�?不支�?!!!"
          if( !encode || !decode ){
              isWebRTCSupported = false
              if( !encode ){
-                 titleText +=" (不支持H264：编码)"
+                 titleText +=" (不支持H264：编�?"
              }
              if( !decode ){
-                 titleText +=" (不支持H264：解码)"
+                 titleText +=" (不支持H264：解�?"
              }
          }
          if( !isMobileBrowser){
              if(isWebRTCSupported){
-                 titleText =  "当前浏览器 支持 !!!";
+                 titleText =  "当前浏览�?支持 !!!";
                  browserCanUseWebrtc = titleText;
              }else{
                  browserCanUseWebrtc = titleText;
@@ -403,6 +403,4 @@ WebRTCTest.prototype = {
      }); 
  }
  
-export {
-  initTestWebrtcConnection
-}
+window.initTestWebrtcConnection = initTestWebrtcConnection
